@@ -575,7 +575,7 @@ int FFmpegExtractor::stream_component_open(int stream_index)
 
         if (avctx->extradata) {
             ALOGV("video stream extradata:");
-            hexdump(avctx->extradata, avctx->extradata_size);
+            //hexdump(avctx->extradata, avctx->extradata_size);
         } else {
             ALOGV("video stream no extradata, but we can ignore it.");
         }
@@ -613,7 +613,7 @@ int FFmpegExtractor::stream_component_open(int stream_index)
 
         if (avctx->extradata) {
             ALOGV("audio stream extradata(%d):", avctx->extradata_size);
-            hexdump(avctx->extradata, avctx->extradata_size);
+            //hexdump(avctx->extradata, avctx->extradata_size);
         } else {
             ALOGV("audio stream no extradata, but we can ignore it.");
         }
@@ -1349,7 +1349,7 @@ retry:
         // update the first key timestamp
         mFirstKeyPktTimestamp = pktTS;
     }
-     
+
     if (pktTS != AV_NOPTS_VALUE && pktTS < mFirstKeyPktTimestamp) {
             ALOGV("drop the packet with the backward timestamp, maybe they are B-frames after I-frame ^_^");
             av_free_packet(&pkt);

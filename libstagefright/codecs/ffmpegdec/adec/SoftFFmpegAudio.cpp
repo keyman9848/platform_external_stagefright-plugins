@@ -1067,7 +1067,7 @@ int32_t SoftFFmpegAudio::handleExtradata() {
 
     ALOGI("got extradata, ignore: %d, size: %lu",
             mIgnoreExtradata, inHeader->nFilledLen);
-    hexdump(inHeader->pBuffer + inHeader->nOffset, inHeader->nFilledLen);
+    //hexdump(inHeader->pBuffer + inHeader->nOffset, inHeader->nFilledLen);
 
     if (mIgnoreExtradata) {
         ALOGI("got extradata, size: %lu, but ignore it", inHeader->nFilledLen);
@@ -1121,7 +1121,7 @@ int32_t SoftFFmpegAudio::openDecoder() {
             deinitVorbisHdr();
 	    }
         ALOGI("extradata is ready, size: %d", mCtx->extradata_size);
-        hexdump(mCtx->extradata, mCtx->extradata_size);
+        //hexdump(mCtx->extradata, mCtx->extradata_size);
         mExtradataReady = true;
     }
 
@@ -1260,7 +1260,7 @@ int32_t SoftFFmpegAudio::decodeAudio() {
 
 	if (!is_flush) {
         if (len < 0) {
-            //if error, we skip the frame 
+            //if error, we skip the frame
             inputBufferUsedLength = mInputBufferSize;
         } else {
             inputBufferUsedLength = len;
@@ -1407,7 +1407,7 @@ void SoftFFmpegAudio::drainOneOutputBuffer() {
 
     outHeader->nOffset = 0;
     outHeader->nFilledLen = copy;
-    outHeader->nTimeStamp = mAudioClock; 
+    outHeader->nTimeStamp = mAudioClock;
     memcpy(outHeader->pBuffer, mResampledData, copy);
     outHeader->nFlags = 0;
 

@@ -256,7 +256,7 @@ void SoftFFmpegVideo::setDefaultCtx(AVCodecContext *avctx, const AVCodec *codec)
 
 status_t SoftFFmpegVideo::initDecoder() {
     status_t status;
-    
+
     status = initFFmpeg();
     if (status != OK) {
         return NO_INIT;
@@ -721,7 +721,7 @@ int32_t SoftFFmpegVideo::handleExtradata() {
 
     ALOGI("got extradata, ignore: %d, size: %lu",
             mIgnoreExtradata, inHeader->nFilledLen);
-    hexdump(inHeader->pBuffer + inHeader->nOffset, inHeader->nFilledLen);
+    //hexdump(inHeader->pBuffer + inHeader->nOffset, inHeader->nFilledLen);
 
     if (mIgnoreExtradata) {
         ALOGI("got extradata, size: %lu, but ignore it", inHeader->nFilledLen);
@@ -761,7 +761,7 @@ int32_t SoftFFmpegVideo::openDecoder() {
 
     if (!mExtradataReady) {
         ALOGI("extradata is ready, size: %d", mCtx->extradata_size);
-        hexdump(mCtx->extradata, mCtx->extradata_size);
+        //hexdump(mCtx->extradata, mCtx->extradata_size);
         mExtradataReady = true;
     }
 
@@ -1041,7 +1041,7 @@ void SoftFFmpegVideo::drainAllOutputBuffers() {
             mSignalledError = true;
             return;
 		}
-		
+
         if (mPendingFrameAsSettingChanged) {
             mPendingFrameAsSettingChanged = false;
         }
@@ -1127,7 +1127,7 @@ void SoftFFmpegVideo::onQueueFilled(OMX_U32 portIndex) {
             mSignalledError = true;
             return;
 		}
-		
+
         if (mPendingFrameAsSettingChanged) {
             mPendingFrameAsSettingChanged = false;
         }
